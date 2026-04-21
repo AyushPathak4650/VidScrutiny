@@ -33,7 +33,9 @@ async def analyze_video_ws(websocket: WebSocket):
     try:
         # Wait for the client to send the URL
         data = await websocket.receive_text()
-        url = json.loads(data).get("url")
+        json_data = json.loads(data)
+        url = json_data.get("url")
+        target_language = json_data.get("language", "Auto")
         
         if not url:
             await websocket.send_text(json.dumps({"error": "Video URL is required"}))
@@ -45,9 +47,12 @@ async def analyze_video_ws(websocket: WebSocket):
             await websocket.close()
             return
 
+        # Create a unique cache key based on URL and requested translation language
+        cache_key = f"{url}_{target_language}"
+
         # --- 1. Check SQLite Cache ---
         await websocket.send_text(json.dumps({"status": "Checking database cache..."}))
-        cached_result = get_cached_analysis(url)
+        cached_result = get_cached_analysis(cache_key)
         if cached_result:
             await websocket.send_text(json.dumps({"status": "Cache hit! Loading instantly..."}))
             await websocket.send_text(json.dumps({
@@ -72,14 +77,14 @@ async def analyze_video_ws(websocket: WebSocket):
         
         # --- 4. RAG & Analysis ---
         # analysis.py will send its own WS updates for Web Search and LLM Generation
-        fact_checks = await asyncio.to_thread(analyze_transcript, segments, websocket)
+        fact_checks = await asyncio.to_thread(analyze_transcript, segments, websocket, target_language)
         
         # Create a local stream URL
         filename = os.path.basename(video_filepath)
         local_stream_url = f"/temp_files/{filename}"
         
         # Save to SQLite Cache
-        await asyncio.to_thread(save_analysis, url, fact_checks, local_stream_url)
+        await asyncio.to_thread(save_analysis, cache_key, fact_checks, local_stream_url)
         
         # Send final payload
         await websocket.send_text(json.dumps({

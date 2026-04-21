@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const videoUrlInput = document.getElementById('video-url');
+    const languageSelect = document.getElementById('language-select');
     const analyzeBtn = document.getElementById('analyze-btn');
     const video = document.getElementById('main-video');
     const playPauseBtn = document.getElementById('play-pause-btn');
@@ -64,7 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ws.onopen = () => {
             // Send URL payload to start process
-            ws.send(JSON.stringify({ url: url }));
+            ws.send(JSON.stringify({ 
+                url: url,
+                language: languageSelect.value 
+            }));
         };
 
         ws.onmessage = (event) => {

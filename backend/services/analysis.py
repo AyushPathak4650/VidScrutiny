@@ -22,7 +22,7 @@ def search_web(query: str) -> str:
         print(f"Search failed for query '{query}': {e}")
         return ""
 
-def analyze_transcript(segments: list, websocket=None) -> list:
+def analyze_transcript(segments: list, websocket=None, target_language="Auto") -> list:
     """
     RAG Pipeline:
     1. Fast extraction of main topics.
@@ -57,6 +57,11 @@ def analyze_transcript(segments: list, websocket=None) -> list:
         import asyncio
         asyncio.run(websocket.send_text(json.dumps({"status": "Generating final Community Notes..."})))
 
+    # Target Language Handling
+    language_instruction = ""
+    if target_language != "Auto":
+        language_instruction = f"CRITICAL: You must write the 'claim' and 'explanation' fields entirely in {target_language}. Do not use English for these fields."
+
     # Step 3: Final JSON Generation
     system_prompt = f"""
     You are an expert, unbiased factual analysis engine. 
@@ -67,6 +72,8 @@ def analyze_transcript(segments: list, websocket=None) -> list:
     {live_context}
     
     Analyze the transcript for clear, objective factual claims.
+    
+    {language_instruction}
     
     For each factual claim:
     1. Identify the exact timestamp (in seconds, as a float).
