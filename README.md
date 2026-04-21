@@ -19,7 +19,7 @@ VidScrutiny acts as an automated, real-time "Community Notes" overlay for short-
 
 ## ✨ The "Wow" Factor Features
 
-* ⚡ **Zero-Latency Feel:** Combines **Whisper-v3** and **Llama-3.3-70b** on specialized Groq hardware to process entire TikToks in seconds.
+* ⚡ **Zero-Latency Feel:** Combines **Whisper-v3** and **Llama-3.3-70b** on specialized Groq hardware to process entire Shorts/Reels in seconds.
 * 🌐 **Live Web Search (RAG):** AI hallucinations are neutralized. The system actively queries DuckDuckGo behind the scenes to find real, live URLs to back up or debunk every claim.
 * 🇮🇳 **Multilingual AI:** Natively supports translating English videos into Hindi fact-checks (and vice-versa) via a single UI toggle.
 * 🚀 **Real-Time WebSockets:** No fake loading bars. The Python backend streams its exact processing state to the frontend via WebSockets.
