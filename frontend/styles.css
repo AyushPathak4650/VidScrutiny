@@ -129,7 +129,70 @@
     pointer-events: none;
 }
 
-/* --- NEW INTERACTIVE ANIMATIONS --- */
+/* --- ULTRA-PREMIUM UI UPGRADES --- */
+
+/* Background Grid Pattern */
+.bg-grid-pattern {
+    background-image: 
+      linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+}
+
+/* Animated Gradient Border for Video Player */
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+@keyframes spin-border {
+    to { --angle: 360deg; }
+}
+.animated-gradient-border {
+    position: relative;
+    background: #050505; /* Inner dark background */
+}
+.animated-gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(from var(--angle), #3b82f6, #8b5cf6, #10b981, #3b82f6);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
+    animation: spin-border 4s linear infinite;
+    opacity: 0.8;
+}
+
+/* Standby Scanline Effect */
+@keyframes crt-scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+}
+.crt-overlay::after {
+    content: " ";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 6px 100%;
+    z-index: 10;
+    pointer-events: none;
+}
+.crt-line {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 10%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.1) 50%, rgba(255,255,255,0));
+    opacity: 0.1;
+    animation: crt-scan 8s linear infinite;
+    pointer-events: none;
+    z-index: 11;
+}
 
 /* 1. Ambient Floating Backgrounds */
 @keyframes float-1 {

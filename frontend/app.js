@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const videoContainer = document.querySelector('.video-container');
     
     // Controls Elements
+    const standbyScreen = document.getElementById('standby-screen');
     const muteBtn = document.getElementById('mute-btn');
     const volUpIcon = document.getElementById('vol-up-icon');
     const volMutedIcon = document.getElementById('vol-muted-icon');
@@ -89,6 +90,11 @@ document.addEventListener('DOMContentLoaded', () => {
         analyzeBtn.classList.add('opacity-70', 'cursor-not-allowed');
         videoUrlInput.parentElement.classList.add('scanner-active');
 
+        // Update Standby Screen
+        standbyScreen.classList.remove('hidden', 'opacity-0');
+        standbyScreen.querySelector('h2').textContent = "Establishing Link";
+        standbyScreen.querySelector('p').textContent = "Connecting to remote AI cluster...";
+
         // Setup WebSocket connection
         // Dynamically connect to whatever host is serving the frontend (localhost for local Docker)
         const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
@@ -117,11 +123,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // Real-time status update
             if (data.status && data.type !== 'result') {
                 statusText.textContent = data.status;
+                standbyScreen.querySelector('p').textContent = data.status;
             }
 
             // Final Payload received
             if (data.type === 'result' && data.status === 'success') {
                 statusText.textContent = "Analysis complete! Loading video...";
+                standbyScreen.querySelector('h2').textContent = "Signal Locked";
+                standbyScreen.querySelector('p').textContent = "Injecting fact-check overlays...";
                 
                 factData = data.fact_checks;
                 factData.sort((a, b) => a.timestamp - b.timestamp);
@@ -130,6 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     video.src = data.stream_url;
                     video.load();
                     video.addEventListener('loadeddata', () => {
+                        standbyScreen.classList.add('opacity-0');
+                        setTimeout(() => standbyScreen.classList.add('hidden'), 500);
                         initialPlayOverlay.classList.remove('hidden');
                     }, { once: true });
                 }
