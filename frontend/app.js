@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Video Controls Logic
     function togglePlay() {
         if (!video.src) return;
-        if (video.paused) {
+        if (video.paused || video.ended) {
             video.play();
             initialPlayOverlay.classList.add('hidden');
         } else {
@@ -238,16 +238,22 @@ document.addEventListener('DOMContentLoaded', () => {
         pauseIcon.classList.add('hidden');
         playIcon.classList.remove('hidden');
     });
+    
+    video.addEventListener('ended', () => {
+        pauseIcon.classList.add('hidden');
+        playIcon.classList.remove('hidden');
+        progressBar.style.width = '100%';
+    });
 
     function formatTime(seconds) {
-        if (isNaN(seconds)) return "0:00";
+        if (isNaN(seconds) || !isFinite(seconds)) return "0:00";
         const m = Math.floor(seconds / 60);
         const s = Math.floor(seconds % 60);
         return `${m}:${s.toString().padStart(2, '0')}`;
     }
 
     video.addEventListener('timeupdate', () => {
-        if (!video.duration) return;
+        if (!video.duration || !isFinite(video.duration)) return;
         const percent = (video.currentTime / video.duration) * 100;
         progressBar.style.width = `${percent}%`;
         timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
@@ -256,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     timeline.addEventListener('click', (e) => {
-        if (!video.duration) return;
+        if (!video.duration || !isFinite(video.duration)) return;
         const rect = timeline.getBoundingClientRect();
         const pos = (e.clientX - rect.left) / rect.width;
         video.currentTime = pos * video.duration;
@@ -267,7 +273,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (factData.length === 0) return;
 
         const currentTime = video.currentTime;
-        const triggerWindow = 0.4; // tighter window for precise stopping
+        // Increased trigger window slightly to ensure slow devices don't jump over the fact check during frame drops
+        const triggerWindow = 0.6; 
 
         let foundIndex = -1;
         for (let i = 0; i < factData.length; i++) {
