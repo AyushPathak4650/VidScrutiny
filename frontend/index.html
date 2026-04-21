@@ -92,7 +92,7 @@
                     <div id="card-glow" class="absolute -top-10 -right-10 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"></div>
                     
                     <div class="relative z-10">
-                        <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center justify-between mb-3">
                             <div class="flex items-center gap-3">
                                 <div id="rating-badge" class="px-3 py-1 rounded-md text-xs font-bold tracking-widest uppercase shadow-sm"></div>
                                 <span class="text-gray-400 text-sm font-mono bg-black/20 px-2 py-0.5 rounded" id="timestamp-display"></span>
@@ -101,23 +101,24 @@
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                             </button>
                         </div>
-                        
+
+                        <!-- Read Source (Moved to Top) -->
                         <div class="mb-4 stagger-1">
+                            <a id="source-link" href="#" target="_blank" class="pointer-events-auto inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 text-xs font-medium transition-colors group bg-blue-500/10 hover:bg-blue-500/20 px-2.5 py-1.5 rounded-lg border border-blue-500/20 w-fit">
+                                <svg class="w-3.5 h-3.5 text-blue-500 group-hover:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                                Read Source
+                                <svg class="w-3 h-3 ml-0.5 opacity-80 group-hover:opacity-100 transition-transform transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            </a>
+                        </div>
+                        
+                        <div class="mb-4 stagger-2">
                             <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-1 font-semibold">Claim</p>
                             <p id="claim-text" class="text-base text-gray-300 font-medium leading-snug border-l-2 border-gray-700 pl-3 italic">"..."</p>
                         </div>
                         
-                        <div class="mb-5 stagger-2">
+                        <div class="mb-2 stagger-3">
                             <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-1 font-semibold">Verified Fact</p>
                             <p id="explanation-text" class="text-white text-[15px] leading-relaxed custom-scrollbar max-h-32 overflow-y-auto pr-2">...</p>
-                        </div>
-                        
-                        <div class="pt-3 border-t border-white/10 stagger-3">
-                            <a id="source-link" href="#" target="_blank" class="pointer-events-auto inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors group">
-                                <svg class="w-4 h-4 text-blue-500 group-hover:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
-                                Read Source
-                                <svg class="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                            </a>
                         </div>
                     </div>
                 </div>
