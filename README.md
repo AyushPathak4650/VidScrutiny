@@ -4,7 +4,6 @@
 
 **Real-Time "Community Notes" for YouTube Shorts & TikToks**
 
-[![Live Demo](https://img.shields.io/badge/🔴_Live_Demo-vid--scrutiny.vercel.app-blue?style=for-the-badge)](https://vid-scrutiny.vercel.app/)
 [![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)]()
 [![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)]()
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)]()
