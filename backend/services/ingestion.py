@@ -33,11 +33,14 @@ def download_audio(url: str) -> str:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             # Extract info to get the exact final filename
             info_dict = ydl.extract_info(url, download=True)
-            ext = info_dict.get('ext', 'm4a')
+            ext = info_dict.get('ext', 'mp4')
             final_filename = os.path.join(temp_dir, f"{unique_id}.{ext}")
             return final_filename
     except yt_dlp.utils.DownloadError as e:
-        raise Exception(f"Failed to download video: {str(e)}")
+        error_msg = str(e)
+        if "Sign in to confirm you’re not a bot" in error_msg:
+            raise Exception("YouTube's anti-bot system blocked our cloud server (Render). For this live demo, please paste a direct .mp4 link or a video from a platform with looser restrictions!")
+        raise Exception(f"Failed to download video: {error_msg}")
     except Exception as e:
         raise Exception(f"An unexpected error occurred during audio extraction: {str(e)}")
 
