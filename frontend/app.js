@@ -31,16 +31,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const sideLog = document.getElementById('side-log');
     const sideLogEmpty = document.getElementById('side-log-empty');
     const claimCount = document.getElementById('claim-count');
-    const demoLinks = document.querySelectorAll('.demo-link-btn');
+    const copyLinks = document.querySelectorAll('.copy-link-btn');
 
     let factData = [];
     let activeFactIndex = -1;
 
-    // Handle Quick Demo Links
-    demoLinks.forEach(btn => {
-        btn.addEventListener('click', () => {
-            videoUrlInput.value = btn.dataset.url;
-            analyzeBtn.click();
+    // Handle Quick Copy Links
+    copyLinks.forEach(btn => {
+        btn.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            try {
+                await navigator.clipboard.writeText(btn.dataset.url);
+                
+                // Show success feedback
+                const copyIcon = btn.querySelector('.copy-icon');
+                const checkIcon = btn.querySelector('.check-icon');
+                
+                copyIcon.classList.add('hidden');
+                checkIcon.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    copyIcon.classList.remove('hidden');
+                    checkIcon.classList.add('hidden');
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy link: ', err);
+            }
         });
     });
 
