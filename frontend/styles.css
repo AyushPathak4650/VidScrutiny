@@ -128,3 +128,48 @@
     animation: scan-line 1.5s infinite linear;
     pointer-events: none;
 }
+
+/* --- NEW INTERACTIVE ANIMATIONS --- */
+
+/* 1. Ambient Floating Backgrounds */
+@keyframes float-1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(60px, 40px) scale(1.1); }
+}
+@keyframes float-2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-60px, -40px) scale(0.9); }
+}
+.bg-glob-1 { animation: float-1 20s ease-in-out infinite; }
+.bg-glob-2 { animation: float-2 25s ease-in-out infinite; }
+
+/* 2. Shimmering Analyze Button */
+@keyframes gradient-shift { 
+    0% { background-position: 0% 50%; } 
+    50% { background-position: 100% 50%; } 
+    100% { background-position: 0% 50%; } 
+}
+.btn-gradient-animate { 
+    background-size: 200% 200%; 
+    animation: gradient-shift 4s ease infinite; 
+}
+
+/* 3. Cascading Side Log Cards */
+@keyframes slide-up-fade { 
+    0% { opacity: 0; transform: translateY(30px); } 
+    100% { opacity: 1; transform: translateY(0); } 
+}
+.log-card-animate { 
+    animation: slide-up-fade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+    opacity: 0; 
+}
+
+/* 4. Claim Count Pop */
+@keyframes pop-badge {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); background-color: rgba(59, 130, 246, 0.3); }
+    100% { transform: scale(1); }
+}
+.badge-pop {
+    animation: pop-badge 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}

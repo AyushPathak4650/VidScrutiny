@@ -204,7 +204,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function renderSideLog() {
         sideLogEmpty.classList.add('hidden');
+        
+        // Pop animation for the count badge
         claimCount.textContent = `${factData.length} Claims`;
+        claimCount.classList.remove('badge-pop');
+        void claimCount.offsetWidth; // trigger reflow
+        claimCount.classList.add('badge-pop');
 
         factData.forEach((fact, index) => {
             const card = document.createElement('div');
@@ -214,7 +219,9 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (fact.rating === 'False') { ringColor = 'ring-rose-500/30'; badgeColor = 'bg-rose-500/20 text-rose-400'; }
             else { ringColor = 'ring-amber-500/30'; badgeColor = 'bg-amber-500/20 text-amber-400'; }
 
-            card.className = `p-3.5 rounded-xl bg-white/5 ring-1 ${ringColor} hover:bg-white/10 cursor-pointer transition-all duration-200 group shadow-sm hover:shadow-md hover:-translate-y-0.5`;
+            // Add the log-card-animate class for the cascading slide-up effect
+            card.className = `log-card-animate p-3.5 rounded-xl bg-white/5 ring-1 ${ringColor} hover:bg-white/10 cursor-pointer transition-all duration-200 group shadow-sm hover:shadow-md hover:-translate-y-0.5`;
+            card.style.animationDelay = `${index * 0.1}s`;
             
             card.innerHTML = `
                 <div class="flex items-center justify-between mb-2">
