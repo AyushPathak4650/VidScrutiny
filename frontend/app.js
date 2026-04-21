@@ -208,13 +208,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         factData.forEach((fact, index) => {
             const card = document.createElement('div');
-            let borderColor, badgeColor;
+            let ringColor, badgeColor;
             
-            if (fact.rating === 'True') { borderColor = 'border-emerald-500/50'; badgeColor = 'bg-emerald-500/20 text-emerald-400'; }
-            else if (fact.rating === 'False') { borderColor = 'border-rose-500/50'; badgeColor = 'bg-rose-500/20 text-rose-400'; }
-            else { borderColor = 'border-amber-500/50'; badgeColor = 'bg-amber-500/20 text-amber-400'; }
+            if (fact.rating === 'True') { ringColor = 'ring-emerald-500/30'; badgeColor = 'bg-emerald-500/20 text-emerald-400'; }
+            else if (fact.rating === 'False') { ringColor = 'ring-rose-500/30'; badgeColor = 'bg-rose-500/20 text-rose-400'; }
+            else { ringColor = 'ring-amber-500/30'; badgeColor = 'bg-amber-500/20 text-amber-400'; }
 
-            card.className = `p-3 rounded-lg border ${borderColor} bg-white/5 hover:bg-white/10 cursor-pointer transition-colors duration-200 group`;
+            card.className = `p-3.5 rounded-xl bg-white/5 ring-1 ${ringColor} hover:bg-white/10 cursor-pointer transition-all duration-200 group shadow-sm hover:shadow-md hover:-translate-y-0.5`;
             
             card.innerHTML = `
                 <div class="flex items-center justify-between mb-2">
@@ -365,29 +365,25 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reset Styles
         ratingBadge.className = 'px-3 py-1 rounded-md text-[11px] font-bold tracking-widest uppercase text-white shadow-sm';
         progressBar.classList.remove('progress-alert-false');
-        factCard.className = 'bg-[#1e232d]/95 backdrop-blur-xl border-l-4 p-6 rounded-r-xl rounded-bl-sm shadow-[0_20px_50px_rgba(0,0,0,0.5)] max-w-md w-full relative overflow-hidden transition-all duration-300';
+        factCard.className = 'bg-[#111318]/90 backdrop-blur-2xl ring-1 p-5 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] max-w-md w-full relative overflow-hidden mt-4 transition-all duration-300';
         cardGlow.className = 'absolute -top-10 -right-10 w-32 h-32 rounded-full blur-3xl opacity-20';
-
-        // Reset animations by forcing a reflow
-        factCardOverlay.classList.remove('card-visible');
-        void factCardOverlay.offsetWidth; // Trigger DOM reflow to restart CSS animation
 
         // Apply PRD Color Psychology
         if (fact.rating === 'False') {
             ratingBadge.classList.add('bg-rose-500');
             ratingBadge.textContent = 'FALSE';
-            factCard.classList.add('border-rose-500');
+            factCard.classList.add('ring-rose-500/50');
             cardGlow.classList.add('bg-rose-500');
             progressBar.classList.add('progress-alert-false'); // Wow factor intense glow
         } else if (fact.rating === 'True') {
             ratingBadge.classList.add('bg-emerald-500');
             ratingBadge.textContent = 'TRUE';
-            factCard.classList.add('border-emerald-500');
+            factCard.classList.add('ring-emerald-500/50');
             cardGlow.classList.add('bg-emerald-500');
         } else {
             ratingBadge.classList.add('bg-amber-500');
             ratingBadge.textContent = 'CONTEXT';
-            factCard.classList.add('border-amber-500');
+            factCard.classList.add('ring-amber-500/50');
             cardGlow.classList.add('bg-amber-500');
         }
 
