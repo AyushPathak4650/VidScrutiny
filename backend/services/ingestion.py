@@ -40,6 +40,8 @@ def download_audio(url: str) -> str:
         error_msg = str(e)
         if "Sign in to confirm you’re not a bot" in error_msg:
             raise Exception("YouTube's anti-bot system blocked our cloud server (Render). For this live demo, please paste a direct .mp4 link or a video from a platform with looser restrictions!")
+        if "403: Forbidden" in error_msg:
+            raise Exception("The server hosting this video blocked our download request (HTTP 403). Please try a different URL, like the default Archive.org video provided.")
         raise Exception(f"Failed to download video: {error_msg}")
     except Exception as e:
         raise Exception(f"An unexpected error occurred during audio extraction: {str(e)}")
