@@ -12,6 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressBar = document.getElementById('progress-bar');
     const timeDisplay = document.getElementById('time-display');
     const markersContainer = document.getElementById('markers-container');
+    const videoContainer = document.querySelector('.video-container');
+    
+    // Controls Elements
+    const muteBtn = document.getElementById('mute-btn');
+    const volUpIcon = document.getElementById('vol-up-icon');
+    const volMutedIcon = document.getElementById('vol-muted-icon');
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
     
     // Status Elements
     const statusContainer = document.getElementById('status-container');
@@ -268,6 +275,28 @@ document.addEventListener('DOMContentLoaded', () => {
         pauseIcon.classList.add('hidden');
         playIcon.classList.remove('hidden');
         progressBar.style.width = '100%';
+    });
+
+    // Mute and Fullscreen Logic
+    muteBtn.addEventListener('click', () => {
+        video.muted = !video.muted;
+        if (video.muted) {
+            volUpIcon.classList.add('hidden');
+            volMutedIcon.classList.remove('hidden');
+        } else {
+            volUpIcon.classList.remove('hidden');
+            volMutedIcon.classList.add('hidden');
+        }
+    });
+
+    fullscreenBtn.addEventListener('click', () => {
+        if (!document.fullscreenElement) {
+            videoContainer.requestFullscreen().catch(err => {
+                console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+            });
+        } else {
+            document.exitFullscreen();
+        }
     });
 
     function formatTime(seconds) {

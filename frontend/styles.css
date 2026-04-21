@@ -4,7 +4,7 @@
 @keyframes card-entrance {
     0% {
         opacity: 0;
-        transform: translateY(40px) scale(0.9) rotateX(-10deg);
+        transform: translateY(-40px) scale(0.9) rotateX(10deg);
         filter: blur(10px);
     }
     100% {
@@ -86,7 +86,7 @@
 #fact-card {
     opacity: 0;
     pointer-events: none;
-    transform-origin: bottom left;
+    transform-origin: top left;
     /* Added perspective for the 3D rotation entrance */
     perspective: 1000px; 
 }

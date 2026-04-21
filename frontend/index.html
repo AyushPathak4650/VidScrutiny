@@ -84,10 +84,10 @@
                 </button>
             </div>
 
-            <!-- "Community Notes" Sleek Overlay Card (Positioned bottom-left for broadcast feel) -->
-            <div id="fact-card-overlay" class="absolute inset-0 pointer-events-none flex items-end justify-start p-6 sm:p-10 z-30">
+            <!-- "Community Notes" Sleek Overlay Card (Positioned top-left for better visibility) -->
+            <div id="fact-card-overlay" class="absolute inset-0 pointer-events-none flex items-start justify-start p-6 sm:p-10 z-30">
                 <!-- 30% Surface Color: Fact Card -->
-                <div id="fact-card" class="bg-[#1e232d]/95 backdrop-blur-xl border-l-4 border-slate-700 p-6 rounded-r-xl rounded-bl-sm shadow-[0_20px_50px_rgba(0,0,0,0.5)] max-w-md w-full relative overflow-hidden">
+                <div id="fact-card" class="bg-[#1e232d]/95 backdrop-blur-xl border-l-4 border-slate-700 p-6 rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] max-w-md w-full relative overflow-hidden mt-4">
                     <!-- Decorative subtle glow in the background of the card -->
                     <div id="card-glow" class="absolute -top-10 -right-10 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"></div>
                     
@@ -146,8 +146,13 @@
                     
                     <!-- Volume/Fullscreen placeholders for UI completeness -->
                     <div class="flex items-center gap-4 text-gray-400">
-                        <svg class="w-5 h-5 hover:text-white cursor-pointer transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M8 12H5a2 2 0 01-2-2V8a2 2 0 012-2h3l4-4v16l-4-4z"></path></svg>
-                        <svg class="w-5 h-5 hover:text-white cursor-pointer transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                        <button id="mute-btn" class="hover:text-white transition-colors focus:outline-none p-1">
+                            <svg id="vol-up-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072M18.364 5.636a9 9 0 010 12.728M8 12H5a2 2 0 01-2-2V8a2 2 0 012-2h3l4-4v16l-4-4z"></path></svg>
+                            <svg id="vol-muted-icon" class="w-5 h-5 hidden text-rose-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"></path></svg>
+                        </button>
+                        <button id="fullscreen-btn" class="hover:text-white transition-colors focus:outline-none p-1">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                        </button>
                     </div>
                 </div>
             </div>
