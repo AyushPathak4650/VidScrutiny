@@ -164,11 +164,47 @@
                         <span id="claim-count" class="text-xs bg-white/10 px-2 py-1 rounded text-gray-400 font-mono">0 Claims</span>
                     </div>
                     
-                    <div id="side-log" class="flex-grow overflow-y-auto custom-scrollbar p-4 flex flex-col gap-3">
+                    <div id="side-log" class="flex-grow overflow-y-auto custom-scrollbar p-4 flex flex-col gap-3 relative">
                         <!-- Empty State -->
-                        <div id="side-log-empty" class="h-full flex flex-col items-center justify-center text-center px-4 opacity-50">
-                            <svg class="w-12 h-12 mb-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                            <p class="text-sm text-gray-400">Awaiting video analysis. Paste a link to generate a real-time fact check log.</p>
+                        <div id="side-log-empty" class="h-full flex flex-col items-center justify-center text-center px-2">
+                            <svg class="w-12 h-12 mb-3 text-gray-600 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                            <p class="text-sm text-gray-400 opacity-80 mb-8">Awaiting video analysis. Paste a link to generate a real-time fact check log.</p>
+                            
+                            <!-- Quick Demo Links -->
+                            <div class="w-full text-left mt-auto">
+                                <p class="text-[10px] text-gray-500 uppercase tracking-widest font-bold mb-3 border-b border-gray-700/50 pb-2">One-Click Demos</p>
+                                <div class="flex flex-col gap-2.5">
+                                    <button class="demo-link-btn text-left text-sm bg-[#1a1d24] hover:bg-gray-800 border border-white/5 p-3 rounded-xl transition-all duration-200 flex items-center gap-3 group w-full shadow-lg" data-url="https://youtube.com/shorts/0aXkBM-QlS4">
+                                        <div class="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:bg-blue-500/20 transition-colors shrink-0">
+                                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.254,4,12,4,12,4S5.746,4,4.186,4.418c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.746,2,12,2,12s0,4.254,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768C5.746,20,12,20,12,20s6.254,0,7.814-0.418c0.86-0.23,1.538-0.908,1.768-1.768C22,16.254,22,12,22,12S22,7.746,21.582,6.186z M10,15.464V8.536L16,12L10,15.464z"></path></svg>
+                                        </div>
+                                        <div class="overflow-hidden">
+                                            <p class="text-gray-200 font-medium text-[13px] group-hover:text-white transition-colors">Viral Short #1</p>
+                                            <p class="text-gray-500 text-[11px] mt-0.5 font-mono truncate">youtube.com/shorts/0aXkBM-QlS4</p>
+                                        </div>
+                                    </button>
+                                    
+                                    <button class="demo-link-btn text-left text-sm bg-[#1a1d24] hover:bg-gray-800 border border-white/5 p-3 rounded-xl transition-all duration-200 flex items-center gap-3 group w-full shadow-lg" data-url="https://youtube.com/shorts/V880AfEP1fY">
+                                        <div class="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500/20 transition-colors shrink-0">
+                                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.254,4,12,4,12,4S5.746,4,4.186,4.418c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.746,2,12,2,12s0,4.254,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768C5.746,20,12,20,12,20s6.254,0,7.814-0.418c0.86-0.23,1.538-0.908,1.768-1.768C22,16.254,22,12,22,12S22,7.746,21.582,6.186z M10,15.464V8.536L16,12L10,15.464z"></path></svg>
+                                        </div>
+                                        <div class="overflow-hidden">
+                                            <p class="text-gray-200 font-medium text-[13px] group-hover:text-white transition-colors">Viral Short #2</p>
+                                            <p class="text-gray-500 text-[11px] mt-0.5 font-mono truncate">youtube.com/shorts/V880AfEP1fY</p>
+                                        </div>
+                                    </button>
+                                    
+                                    <button class="demo-link-btn text-left text-sm bg-[#1a1d24] hover:bg-gray-800 border border-white/5 p-3 rounded-xl transition-all duration-200 flex items-center gap-3 group w-full shadow-lg" data-url="https://youtube.com/shorts/F2ikz2sIJGI">
+                                        <div class="w-8 h-8 rounded-full bg-rose-500/10 flex items-center justify-center text-rose-400 group-hover:bg-rose-500/20 transition-colors shrink-0">
+                                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.254,4,12,4,12,4S5.746,4,4.186,4.418c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.746,2,12,2,12s0,4.254,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768C5.746,20,12,20,12,20s6.254,0,7.814-0.418c0.86-0.23,1.538-0.908,1.768-1.768C22,16.254,22,12,22,12S22,7.746,21.582,6.186z M10,15.464V8.536L16,12L10,15.464z"></path></svg>
+                                        </div>
+                                        <div class="overflow-hidden">
+                                            <p class="text-gray-200 font-medium text-[13px] group-hover:text-white transition-colors">Viral Short #3</p>
+                                            <p class="text-gray-500 text-[11px] mt-0.5 font-mono truncate">youtube.com/shorts/F2ikz2sIJGI</p>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                         <!-- Log items will be injected here -->
                     </div>

@@ -31,9 +31,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const sideLog = document.getElementById('side-log');
     const sideLogEmpty = document.getElementById('side-log-empty');
     const claimCount = document.getElementById('claim-count');
+    const demoLinks = document.querySelectorAll('.demo-link-btn');
 
     let factData = [];
     let activeFactIndex = -1;
+
+    // Handle Quick Demo Links
+    demoLinks.forEach(btn => {
+        btn.addEventListener('click', () => {
+            videoUrlInput.value = btn.dataset.url;
+            analyzeBtn.click();
+        });
+    });
 
     analyzeBtn.addEventListener('click', async () => {
         const url = videoUrlInput.value;
