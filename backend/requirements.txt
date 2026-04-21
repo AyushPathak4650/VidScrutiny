@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+yt-dlp
+openai
+pydantic
+python-dotenv
+duckduckgo-search
+websockets

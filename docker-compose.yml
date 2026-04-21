@@ -1,0 +1,10 @@
+services:
+  vidscrutiny:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/temp_files:/app/backend/temp_files
+    env_file:
+      - ./backend/.env
+    restart: unless-stopped

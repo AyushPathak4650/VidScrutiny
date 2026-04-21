@@ -1,0 +1,130 @@
+/* Advanced Animations & UI Polish */
+
+/* 1. The "Wow Factor" Card Entrance */
+@keyframes card-entrance {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.9) rotateX(-10deg);
+        filter: blur(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotateX(0);
+        filter: blur(0);
+    }
+}
+
+/* 2. Staggered Text Reveal inside the Card */
+@keyframes text-reveal {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 3. Marker Pop Animation */
+@keyframes marker-pop {
+    0% {
+        transform: translateY(-50%) translateX(-50%) scale(0);
+        opacity: 0;
+    }
+    60% {
+        transform: translateY(-50%) translateX(-50%) scale(1.4);
+    }
+    100% {
+        transform: translateY(-50%) translateX(-50%) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Fitts's Law: Touch targets */
+.marker {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%) scale(0); /* Start hidden for animation */
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    z-index: 20;
+    border: 2px solid white;
+    opacity: 0;
+    animation: marker-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.marker::after {
+    content: '';
+    position: absolute;
+    top: -15px; left: -15px; right: -15px; bottom: -15px;
+    border-radius: 50%;
+}
+
+.marker:hover, .marker:focus-visible {
+    transform: translateY(-50%) translateX(-50%) scale(1.4) !important;
+    outline: none;
+    z-index: 30;
+}
+
+.marker-true { background-color: #10b981; box-shadow: 0 0 12px #10b981; }
+.marker-false { background-color: #f43f5e; box-shadow: 0 0 12px #f43f5e; }
+.marker-context { background-color: #f59e0b; box-shadow: 0 0 12px #f59e0b; }
+
+/* The intensely glowing False progress bar */
+.progress-alert-false {
+    background-color: #f43f5e !important;
+    box-shadow: 0 0 20px #f43f5e, 0 0 40px #f43f5e !important;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Card Visibility Classes */
+#fact-card {
+    opacity: 0;
+    pointer-events: none;
+    transform-origin: bottom left;
+    /* Added perspective for the 3D rotation entrance */
+    perspective: 1000px; 
+}
+
+.card-visible #fact-card {
+    pointer-events: auto;
+    animation: card-entrance 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* Apply staggered reveals to inner elements when card is visible */
+.card-visible .stagger-1 { animation: text-reveal 0.5s ease forwards 0.1s; opacity: 0; }
+.card-visible .stagger-2 { animation: text-reveal 0.5s ease forwards 0.2s; opacity: 0; }
+.card-visible .stagger-3 { animation: text-reveal 0.5s ease forwards 0.3s; opacity: 0; }
+
+/* Video Player Shadow */
+.video-container {
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+
+/* AI Processing Scanner Line */
+@keyframes scan-line {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+.scanner-active {
+    position: relative;
+    overflow: hidden;
+}
+.scanner-active::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent);
+    animation: scan-line 1.5s infinite linear;
+    pointer-events: none;
+}
