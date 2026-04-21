@@ -57,9 +57,8 @@ document.addEventListener('DOMContentLoaded', () => {
         videoUrlInput.parentElement.classList.add('scanner-active');
 
         // Setup WebSocket connection
-        const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-        // Connect to same host as window
-        const wsUrl = `${wsProtocol}//${window.location.host}/api/ws/analyze`;
+        // Connect directly to the live Render backend
+        const wsUrl = `wss://vidscrutiny.onrender.com/api/ws/analyze`;
         const ws = new WebSocket(wsUrl);
 
         ws.onopen = () => {
